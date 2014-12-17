@@ -12,12 +12,8 @@ if (!exists('NEI')) {
     NEI <- readRDS("summarySCC_PM25.rds")    
 }
 
-if (!exists('SCC')) {
-    SCC <- readRDS("Source_Classification_Code.rds")    
-}
-
 # Filter down to the Baltimore fips code,
-#   Select only emissions and year: group by year: then sum emissions
+#   Select only emissions and year; group by year; then sum emissions
 summarized.data <- 
     NEI %>% 
     filter(fips == '24510') %>%

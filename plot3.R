@@ -14,10 +14,6 @@ if (!exists('NEI')) {
     NEI <- readRDS("summarySCC_PM25.rds")    
 }
 
-if (!exists('SCC')) {
-    SCC <- readRDS("Source_Classification_Code.rds")    
-}
-
 # Filter down to the Baltimore fips code,
 #   Select type emissions and year: group by year: then sum emissions
 summarized.data <- 
@@ -25,8 +21,7 @@ summarized.data <-
     filter(fips == '24510') %>%
     select(Emissions, type, year) %>%
     group_by(year, type) %>%
-    summarise_each(funs(sum)) %>%
-    arrange(type)
+    summarise_each(funs(sum))
 
 suppressWarnings(print(
     qplot(data=summarized.data, y=Emissions, x=year, facets=.~type, 
