@@ -13,25 +13,28 @@ if (!exists('NEI')) {
     NEI <- readRDS("summarySCC_PM25.rds")    
 }
 
-# Select only emissions and year, group by year, then sum emissions
+# Select only emissions and year; group by year; then sum emissions
 summarized.data <- 
     NEI %>% 
     select(Emissions, year) %>% 
     group_by(year) %>% 
-    summarise_each(funs(sum))
-    
-summarized.data <- mutate(summarized.data, Emissions = Emissions / 1000 )
+    summarise_each(funs(sum)) %>%
+    mutate(Emissions = Emissions / 1000 ) # reads betters in the plot
 
 # Make the basic plot
 png(filename="./plot1.png", width=480, height=480)
-plot(x = summarized.data, type='l', ylab='Emissions (in 1000s of tons)', xlab='Year', xaxt = "n", yaxt = "n")
+plot(x = summarized.data, type='l', ylab='Emissions (in 1000s of tons)', xlab='', xaxt = "n", yaxt = "n")
 
-# Annotate the plot
+# Format the axis
 axis(side=1, at=c(1999, 2002, 2005, 2008), lwd=0.5, lty=1 )
-axis(side=2, at=c(0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000), lwd=0.5, lty=1 )
+axis(side=2, lwd=0.5, lty=1 )
+
+# Apply labels
 title(main=bquote(atop('Fine particulate matter ('~PM[2.5]~') emissions', 'decreased in the United States, 1999-2008' )))
-par(mar =  c(2, 4, 4, 2)) 
-par(oma =  c(2, 0, 0, 0)) 
-title(sub=bquote(atop('Data source: Environmental Protection Agency (EPA)')))
+mtext(side = 1, "Data source: Environmental Protection Agency (EPA)", line= 2.4, font=1, cex=.7)
+
+# Add trend line and legend to make the decrease more apparent
+abline(lm(Emissions ~ year, data=summarized.data), col='red')
+legend("topright", pch = '_', col = c("black","red"), legend = c("Emissions","Trend"))
 
 dev.off()
