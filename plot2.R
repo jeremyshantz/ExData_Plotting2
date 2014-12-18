@@ -34,7 +34,7 @@ mtext(side=2, "(in 1000s of tons)", line=1.8, font=1, cex=.7)
 # X axis and label
 axis(side = 1, line = 0, cex.axis=.8, at = c(1999, 2002, 2005, 2008), lwd=0.5, lty=1 )
 mtext(side = 1, NA, line = 1.8, font = 1.6, cex = 1.3)
-mtext(side = 1, "Data source: Environmental Protection Agency (EPA)", line= 2.4, font=1, cex=.7)
+mtext(side = 1, "Data source: Environmental Protection Agency (EPA)", line= 2.4, font=1, cex=.7, adj=-.25)
 
 # Main title
 mtext(side=3, bquote('Baltimore emissions decreased'), line=2, font=1.6, cex=1.2)

@@ -31,7 +31,7 @@ axis(side=2, lwd=0.5, lty=1 )
 
 # Apply labels
 title(main=bquote(atop('Fine particulate matter ('~PM[2.5]~') emissions', 'decreased in the United States, 1999-2008' )))
-mtext(side = 1, "Data source: Environmental Protection Agency (EPA)", line= 2.4, font=1, cex=.7)
+mtext(side = 1, "Data source: Environmental Protection Agency (EPA)", line= 2.4, font=1, cex=.7, adj=-.25)
 
 # Add trend line and legend to make the decrease more apparent
 abline(lm(Emissions ~ year, data=summarized.data), col='red')
