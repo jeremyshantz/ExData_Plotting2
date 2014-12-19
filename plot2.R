@@ -24,24 +24,25 @@ summarized.data <-
 
 # Make the basic plot
 png(filename="./plot2.png", width=480, height=480)
-plot(x = summarized.data, type='l', ylab=NA, xlab=NA, xaxt = "n", yaxt = "n")
+plot(x = summarized.data, type='l', ylab=NA, xlab=NA, xaxt = "n", yaxt = "n", lwd = 3)
 
 # Y axis and label
 axis(side = 2, line= 0, cex.axis=.6, las=1)
 mtext(side=2, 'Emissions', line=2.7, font=1.6, cex=1.3)
-mtext(side=2, "(in 1000s of tons)", line=1.8, font=1, cex=.7)
+mtext(side=2, "(in 1000s of tons)", line=1.85, font=1, cex=.65)
 
 # X axis and label
 axis(side = 1, line = 0, cex.axis=.8, at = c(1999, 2002, 2005, 2008), lwd=0.5, lty=1 )
 mtext(side = 1, NA, line = 1.8, font = 1.6, cex = 1.3)
-mtext(side = 1, "Data source: Environmental Protection Agency (EPA)", line= 2.4, font=1, cex=.7, adj=-.25)
+mtext(side = 1, line= 2.4, font=1, cex=.7, adj=-.25, "Data source: Environmental Protection Agency (EPA)")
 
 # Main title
-mtext(side=3, bquote('Baltimore emissions decreased'), line=2, font=1.6, cex=1.2)
-mtext(side=3, 'Fine particulate matter ('~PM[2.5]~'), 1999 to 2008', line=.8, font=1.6, cex=.8)
+mtext(side=3, line=2, font=1.6, cex=1.2, 'Baltimore emissions decreased')
+mtext(side=3, line=.8, font=1.6, cex=.8, 'Fine particulate matter ('~PM[2.5]~'), 1999 to 2008')
 
 # Add trend line and legend to make the decrease more apparent
-abline(lm(Emissions ~ year, data=summarized.data), col='red')
+abline(lm(Emissions ~ year, data=summarized.data), col='red', lwd = 3)
 legend("topright", pch = '_', col = c("black","red"), legend = c("Emissions","Trend"))
+grid()
 
 dev.off()

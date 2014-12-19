@@ -5,6 +5,9 @@
     # Which have seen increases in emissions from 1999–2008? 
     # Use the ggplot2 plotting system to make a plot answer this question.
 
+# Interpretation: plot only the first and last data points in the time series 
+    # to make clear the direction of emissions
+
 # using dplyr to manipulate the data set
 library('dplyr')
 library('ggplot2')
@@ -21,12 +24,36 @@ summarized.data <-
     filter(fips == '24510') %>%
     select(Emissions, type, year) %>%
     group_by(year, type) %>%
+    summarise_each(funs(sum)) %>%
+    filter(year == 1999 | year == 2008)
+
+
+
+p <- ggplot(data=summarized.data, aes(x=year, y=Emissions, group=type, color=direction, shape=type ))  + 
+    geom_line() +
+    geom_point() +
+    theme(legend.position=c(.7, .4))  +
+    ggtitle("Baltimore Emissions 1999 - 2008\nPoint emissions up slightly. Other emission types down")
+
+xxx <- function(x) { 
+    print(class(x)) 
+}
+
+ddd <- 
+    NEI %>% 
+    filter(fips == '24510') %>%
+    select(Emissions, type, year) %>%
+    group_by(year, type) %>%
+    filter(year == 1999 | year == 2008) %>%
     summarise_each(funs(sum))
 
-suppressWarnings(print(
-    qplot(data=summarized.data, y=Emissions, x=year, facets=.~type, 
-          ylab="x", xlab="",
-          binwidth=.4
-    )
-    + ggtitle(paste('Emissions', '\n'))
-))
+# percentchange.la <- ( losangeles.vehicles[,2] - lag(losangeles.vehicles[,2][[1]], 1)) / lag(losangeles.vehicles[,2][[1]], 1) * 100
+    
+diff <- data.frame(diff = c(1,4,2,-4), Type=c('a', 'b', 'c', 'd'))
+
+p <- ggplot(data=diff, aes(x=Type, y=diff, color=Type, fill=Type, width=0.1)) + 
+    geom_bar(stat='identity') + 
+    ggtitle("Baltimore Emissions - Percent Change - 1999 to 2008\nPoint emissions up slightly. Other emission types down")
+
+print(p)
+#ggsave(file='./plot3.png')

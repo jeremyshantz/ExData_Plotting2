@@ -57,8 +57,10 @@ names(percentchange) <- c('Year', 'Los Angeles', 'Baltimore')
 # Make the basic plot
 png(filename="./plot6.png", width=480, height=480)
 plot(percentchange[,1], percentchange[,2], type='n', ylab=NA, xlab=NA, ylim=c(-70,30), xaxt = "n", yaxt = "n")
-points(percentchange[,1], percentchange[,3], type='l', col=colors()[53], lwd=3)
-points(percentchange[,1], percentchange[,2], type='l', col=colors()[555], lwd=3 )
+
+# Add city lines and grid
+points(percentchange[,1], percentchange[,3], type='l', col=colors()[53], lwd = 3)
+points(percentchange[,1], percentchange[,2], type='l', col=colors()[555], lwd = 3 )
 grid()
 
 # Y axis and label
@@ -68,14 +70,16 @@ mtext(side=2, "Year over year", line=1.8, font=1, cex=.7)
 
 # X axis and label
 axis(side = 1, line = -2, cex.axis=.7, at = c(2002, 2005, 2008), lwd=0.5, lty=1 )
-mtext(side = 1, 'Note: The figure given for 2002 is the percentage change in emissions from 1999. The 1999 data is in this plot.', 
-      line = 1, font = 1, cex = .78, adj = .7 )
-mtext(side = 1, "Data source: Environmental Protection Agency (EPA)", line= 2.4, font=1, cex=.6, adj = -.12)
+mtext(side = 1, line = 1, font = 1, cex = .78, adj = .7,
+      'Note: The figure given for 2002 is the percentage change in emissions from 1999. The 1999 data is in this plot.')
+mtext(side = 1, line= 2.4, font=1, cex=.6, adj = -.12, 
+      "Data source: Environmental Protection Agency (EPA)")
 
 # Main title
-mtext(side=3, 'Baltimore vs Los Angeles Vehicle Emissions - Yearly % Change', line=2, font=1.6, cex=1.1)
-mtext(side=3, 'Baltimore emissions have seen greater changes from 1999 to 2008, both up and down', line=.9, font=1.6, cex=.8, 
-      col='black')
+mtext(side=3, line=2, font=1.6, cex=1.1,
+      'Baltimore vs Los Angeles Vehicle Emissions - Yearly % Change')
+mtext(side=3, line=.9, font=1.6, cex=.8, col='black', 
+      'Baltimore emissions have seen greater changes from 1999 to 2008, both up and down')
 
 # Add legend
 legend("topright", pch = '_', col = c(colors()[555], colors()[53]), legend = c("Los Angeles", "Baltimore"), lwd = 3)
