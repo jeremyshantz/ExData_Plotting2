@@ -26,7 +26,7 @@ png(filename="./plot1.png", width=480, height=480)
 plot(x = summarized.data, type='l', ylab='', xlab='', xaxt = "n", yaxt = "n", lwd = 3)
 
 # Main title
-mtext(side=3, line=2, font=1.6, cex=1.2, 'Fine particulate matter ('~PM[2.5]~') 1999-2008')
+mtext(side=3, line=2, font=1.6, cex=1.2, 'US fine particulate matter ('~PM[2.5]~') emissions 1999-2008')
 mtext(side=3, line=.8, font=1.6, cex=1.0, col='blue', 'Emissions decreased in the United States')
 
 # Y axis
