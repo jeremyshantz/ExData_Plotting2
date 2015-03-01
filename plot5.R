@@ -4,7 +4,7 @@
 
 # using dplyr to manipulate the data set
 library('dplyr')
-
+setwd('~/R/Exploratory_Data_Analysis/project2/')
 # Load the data sets; check first if they are already loaded to avoid expensive reloads
 if (!exists('NEI')) {
     NEI <- readRDS("summarySCC_PM25.rds")    
@@ -27,7 +27,7 @@ baltimore.vehicles <- NEI %>%
     summarise_each(funs(sum))
 
 # Make the basic plot
-png(filename="./plot5.png", width=480, height=480)
+#png(filename="./plot5.png", width=480, height=480)
 plot(x = baltimore.vehicles, type='l', ylab=NA, xlab=NA, xaxt = "n", yaxt = "n", lwd = 3)
 
 # Y axis and label
@@ -50,5 +50,4 @@ mtext(side=3, line=.9, font=1.6, cex=.81, col='blue',
 abline(lm(Emissions ~ year, data = baltimore.vehicles), col='red', lwd = 3)
 legend("topright", pch = '_', col = c("black","red"), legend = c("Emissions","Trend"))
 grid()
-
-dev.off()
+#dev.off()

@@ -7,6 +7,7 @@
 
 # Using dplyr to manipulate the data set
 library('dplyr')
+setwd('~/R/Exploratory_Data_Analysis/project2/')
 
 # Load the data set; check first if it is already loaded to avoid expensive reloads
 if (!exists('NEI')) {
@@ -22,7 +23,7 @@ summarized.data <-
     mutate(Emissions = Emissions / 1000 ) # reads betters in the plot
 
 # Make the basic plot
-png(filename="./plot1.png", width=480, height=480)
+#png(filename="./plot1.png", width=480, height=480)
 plot(x = summarized.data, type='l', ylab='', xlab='', xaxt = "n", yaxt = "n", lwd = 3)
 
 # Main title
@@ -42,4 +43,4 @@ abline(lm(Emissions ~ year, data=summarized.data), col='red', lwd = 3)
 legend("topright", pch = '_', col = c("black","red"), legend = c("Emissions","Trend"))
 grid()
 
-dev.off()
+#dev.off()

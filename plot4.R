@@ -5,6 +5,7 @@
 
 # using dplyr to manipulate the data set
 library('dplyr')
+setwd('~/R/Exploratory_Data_Analysis/project2/')
 
 # Load the data sets; check first if they are already loaded to avoid expensive reloads
 if (!exists('NEI')) {
@@ -29,7 +30,7 @@ coal <- NEI %>%
     mutate(Emissions = Emissions / 1000 ) # change the scale so the y-axis reads better
 
 # Make the basic plot
-png(filename="./plot4.png", width=480, height=480)
+#png(filename="./plot4.png", width=480, height=480)
 plot(x = coal, type='l', ylab=NA, xlab=NA, xaxt = "n", yaxt = "n", lwd = 3)
 
 # Y axis and label
@@ -53,4 +54,4 @@ abline(lm(Emissions ~ year, data=coal), col='red', lwd = 3)
 legend("topright", pch = '_', col = c("black","red"), legend = c("Emissions","Trend"))
 grid()
 
-dev.off()
+#dev.off()

@@ -6,6 +6,7 @@
 
 # using dplyr to manipulate the data set
 library('dplyr')
+setwd('~/R/Exploratory_Data_Analysis/project2/')
 
 # Load the data sets; check first if they are already loaded to avoid expensive reloads
 if (!exists('NEI')) {
@@ -23,7 +24,7 @@ summarized.data <-
     mutate(Emissions = Emissions / 1000 ) # change the scale so plot reads better
 
 # Make the basic plot
-png(filename="./plot2.png", width=480, height=480)
+#png(filename="./plot2.png", width=480, height=480)
 plot(x = summarized.data, type='l', ylab=NA, xlab=NA, xaxt = "n", yaxt = "n", lwd = 3)
 
 # Y axis and label
@@ -45,4 +46,4 @@ abline(lm(Emissions ~ year, data=summarized.data), col='red', lwd = 3)
 legend("topright", pch = '_', col = c("black","red"), legend = c("Emissions","Trend"))
 grid()
 
-dev.off()
+#dev.off()

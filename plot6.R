@@ -14,7 +14,7 @@
 
 # Using dplyr to manipulate the data set
 library('dplyr')
-
+setwd('~/R/Exploratory_Data_Analysis/project2/')
 # Load the data sets; check first if they are already loaded to avoid expensive reloads
     # These files must be in the working directory
 if (!exists('NEI')) {
@@ -55,7 +55,7 @@ percentchange[,1] <- as.character(percentchange[,1])
 names(percentchange) <- c('Year', 'Los Angeles', 'Baltimore')
 
 # Make the basic plot
-png(filename="./plot6.png", width=480, height=480)
+#png(filename="./plot6.png", width=480, height=480)
 plot(percentchange[,1], percentchange[,2], type='n', ylab=NA, xlab=NA, ylim=c(-70,30), xaxt = "n", yaxt = "n")
 
 # Add city lines and grid
@@ -84,4 +84,4 @@ mtext(side=3, line=.9, font=1.6, cex=.8, col='black',
 # Add legend
 legend("topright", pch = '_', col = c(colors()[555], colors()[53]), legend = c("Los Angeles", "Baltimore"), lwd = 3)
 
-dev.off()
+#dev.off()

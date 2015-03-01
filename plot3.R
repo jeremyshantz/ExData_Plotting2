@@ -28,11 +28,11 @@ summarized.data <-
     summarise_each(funs(sum)) %>% 
     dcast(type ~ year) # reshape data, putting 1999 and 2008 as columns with type in the rows
 
-# Rename columsn to avoid numeric column names
+# Rename columns to avoid numeric column names
 names(summarized.data) <- c('Type', 'Y1999', 'Y2008')
 
 # Calculate the difference in emissions between 2008 and 1999
-summarized.data$diff <- ddd$Y2008 - ddd$Y1999 
+summarized.data$diff <- summarized.data$Y2008 - summarized.data$Y1999 
 
 # Create a bar plot of the difference in emissions
 p <- ggplot(data=summarized.data, aes(x=Type, y=diff, color=Type, fill=Type, width=0.1)) + 
@@ -40,6 +40,6 @@ p <- ggplot(data=summarized.data, aes(x=Type, y=diff, color=Type, fill=Type, wid
     ggtitle("Baltimore Emissions - 1999 to 2008\nPoint emissions up slightly. Other emission types down") + 
     xlab('Data source: Environmental Protection Agency (EPA)') + 
     ylab('Emissions (in tons)')
-
+print(p)
 # Save plot to disk
 ggsave(file='./plot3.png')
